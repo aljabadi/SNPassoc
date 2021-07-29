@@ -12,7 +12,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
+          - { os: macOS-10.10, r: '4.0.5'}
+          - { os: macOS-10.10, r: '4.1.0'}
+          - { os: macOS-10.15, r: '4.0.5'}
+          - { os: macOS-10.15, r: '4.1.0'}
+          - { os: macOS-10.11, r: '4.0.5'}
+          - { os: macOS-10.11, r: '4.1.0'}
           - { os: macOS-latest, r: '4.0.5'}
+          - { os: macOS-latest, r: '4.0.0'}
           - { os: macOS-latest, r: '4.1.0'}
 
     steps:
