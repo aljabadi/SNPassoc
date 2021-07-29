@@ -1,0 +1,27 @@
+on: [push]
+name: install
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+    container: ${{ matrix.config.image }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }} - ${{ matrix.config.bioc }} - ${{ matrix.config.image }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: macOS-latest, r: '4.0.5'}
+          - { os: macOS-latest, r: '4.1.0'}
+
+    steps:
+      - name: Set up R ▶️
+        uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
+
+      - name: install
+        run: |
+          install.packages('SNPassoc', Ncpus=2)
+        shell: Rscript {0}
